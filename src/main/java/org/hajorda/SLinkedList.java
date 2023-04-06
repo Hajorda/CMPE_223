@@ -76,7 +76,7 @@ public class SLinkedList {
     //return the i-th node
     public static Node get(int i) {
         if (i >= size) //print error message and return null
-            System.out.println("LinkedListtin boyutuu o kadar değil kardeş");
+            System.out.println("LinkedListt'in boyutu o kadar değil kardeş");
 
         Node ptr = head;
 

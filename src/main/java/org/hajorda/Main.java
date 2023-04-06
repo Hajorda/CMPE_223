@@ -67,7 +67,8 @@ public class Main {
                 System.out.println(student.toString() + " stacka pushlandı");
 
                 System.out.println("Hey");
-                SLinkedList.push(student);
+                Node t = new Node(student);
+                SLinkedList.push(t);
                 SLinkedList.printList();
 
 

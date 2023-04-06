@@ -29,6 +29,7 @@ public class SLinkedList {
         while (current != null) {
             current.getElement().setRank(rank);
             rank++;
+            current.getElement().setAverage_grade(current.getElement().getGrade1()* 0.3 + current.getElement().getGrade2() * 0.2 + current.getElement().getGrade3() * 0.5);
             current = current.getNext();
         }
 

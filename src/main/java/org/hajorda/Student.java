@@ -8,6 +8,10 @@ public class Student {
     private double grade1, grade2, grade3;
     private double average_grade = grade1 * 0.3 + grade2 * 0.2 + grade3 * 0.5;
     private int rank;
+
+    public Student(){
+        average_grade = grade1 * 0.3 + grade2 * 0.2 + grade3 * 0.5;
+    }
     public int getID() {
         return ID;
     }

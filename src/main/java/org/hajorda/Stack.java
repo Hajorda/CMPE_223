@@ -29,7 +29,9 @@ public class Stack {
         Node temp = first;
         while(temp != null){
             System.out.println(temp);
-            System.out.println(temp.item.getName() + " " +temp.item.getID() + " "+ temp.item.getAverage_grade());
+            System.out.println("Name: " + temp.item.getName() + ", ID: " + temp.item.getID() +
+                    ", Average Grade: " + temp.item.getAverage_grade() + ", Rank: " + temp.item.getRank() + ", Grades: " + temp.item.getGrade1()
+                    + ", " + temp.item.getGrade2() + ", " + temp.item.getGrade3());
             temp = temp.next;
         }
     }

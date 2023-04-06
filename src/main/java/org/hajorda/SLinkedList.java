@@ -54,7 +54,8 @@ public class SLinkedList {
         while (current != null) {
             Student student = current.getElement();
             System.out.println("Name: " + student.getName() + ", ID: " + student.getID() +
-                    ", Average Grade: " + student.getAverage_grade() + ", Rank: " + student.getRank() + ", Grades: " + student.getGrade1() + ", " + +student.getGrade2() + ", " + student.getGrade3());
+                    ", Average Grade: " + student.getAverage_grade() + ", Rank: " + student.getRank()
+                    + ", Grades: " + student.getGrade1() + ", " + student.getGrade2() + ", " + student.getGrade3());
             current = current.getNext();
         }
     }
@@ -104,9 +105,9 @@ public class SLinkedList {
         return n;
     }
 
-    /*public void addLast(Node n) {
-        insertAfter (get(size), n);
-    }*/
+    //public void addLast(Node n) {
+    //     insertAfter (get(size), n);
+    // }
 
 }
 /* we’ll discuss the following methods

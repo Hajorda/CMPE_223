@@ -43,10 +43,24 @@ public class SLinkedList {
     }
 
     public static void push(Node n) {
-        n.setNext(head);
-        head = n;
-        size++;
-        ranks();
+        if (size == 0) {
+            n.setNext(head);
+            head = n;
+            size++;
+            ranks();
+        } else {
+            Node temp = head;
+            for (int i = 0; i < size; i++) {
+                if (!(temp.getElement().getAverage_grade() < n.getElement().getAverage_grade())) {
+                    insertAfter(temp, n);
+                    ranks();
+                    break;
+                }
+
+                temp = temp.getNext();
+            }
+
+        }
     }
 
     public static void printList() {
@@ -98,6 +112,7 @@ public class SLinkedList {
             temp = temp.getNext();
         }
     }
+
     public static Node removeFirst() {
         Node n = head;
         head = head.getNext();

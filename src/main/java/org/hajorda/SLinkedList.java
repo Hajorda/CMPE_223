@@ -23,7 +23,7 @@ public class SLinkedList {
 
     }
 
-    public static void order66() {
+    public static void ranks() {
         int rank = 1;
         Node current = head;
         while (current != null) {
@@ -39,14 +39,14 @@ public class SLinkedList {
         newNode.setNext(head);
         head = newNode;
         size++;
-        order66();
+        ranks();
     }
 
     public static void push(Node n) {
         n.setNext(head);
         head = n;
         size++;
-        order66();
+        ranks();
     }
 
     public static void printList() {
@@ -54,7 +54,7 @@ public class SLinkedList {
         while (current != null) {
             Student student = current.getElement();
             System.out.println("Name: " + student.getName() + ", ID: " + student.getID() +
-                    ", Average Grade: " + student.getAverage_grade());
+                    ", Average Grade: " + student.getAverage_grade() + ", Rank: " + student.getRank() + ", Grades: " + student.getGrade1() + ", " + +student.getGrade2() + ", " + student.getGrade3());
             current = current.getNext();
         }
     }
@@ -76,7 +76,7 @@ public class SLinkedList {
     //return the i-th node
     public static Node get(int i) {
         if (i >= size) //print error message and return null
-            System.out.println("Linkled listin boyutu aşıldı");
+            System.out.println("LinkedListtin boyutuu o kadar değil kardeş");
 
         Node ptr = head;
 
@@ -85,12 +85,24 @@ public class SLinkedList {
         return ptr;
     }
 
-    /*public static Node removeFirst() {
+    public static void remove(Node a) {
+        Node temp = head;
+        for (int i = 0; i < size; i++) {
+            if (a == temp) {
+                a.setNext(get(i + 1));
+                System.out.println(a.getElement().getName() + "Silindi!");
+                break;
+            }
+
+            temp = temp.getNext();
+        }
+    }
+    public static Node removeFirst() {
         Node n = head;
         head = head.getNext();
         n.setNext(null);
         return n;
-    }*/
+    }
 
     /*public void addLast(Node n) {
         insertAfter (get(size), n);

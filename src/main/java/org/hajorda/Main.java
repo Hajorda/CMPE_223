@@ -75,14 +75,15 @@ public class Main {
 
                 System.out.println(student.getName());
             } else if (input == 2) { //Delete's Student
-                System.out.println(Stack.pop().toString() + " anasının nikahanıa gitti");
-                System.out.println(Stack.pop().getName());
+
+                System.out.println(Stack.pop().getName() + " anasının nikahanıa gitti");
+                System.out.println(SLinkedList.removeFirst().getElement().getName() + "Silindi ");
 
             } else if (input == 3) { //Print's all students info
-                Stack.printStack();
+                SLinkedList.printList();
             } else if (input == 4) { //Exit
-
-                System.exit(0);
+                Stack.printStack();
+                //System.exit(0);
             }
             else{
                 System.out.println("Ben türkce bilmiyor");

@@ -25,13 +25,13 @@ public class Stack {
         return item;
     }
 
-    public static void printStack(){
+    public static void printStack() {
         Node temp = first;
-        while(temp != null){
+        while (temp != null) {
             System.out.println(temp);
             System.out.println("Name: " + temp.item.getName() + ", ID: " + temp.item.getID() +
-                    ", Average Grade: " + temp.item.getAverage_grade() + ", Rank: " + temp.item.getRank() + ", Grades: " + temp.item.getGrade1()
-                    + ", " + temp.item.getGrade2() + ", " + temp.item.getGrade3());
+                    ", Average Grade: " + temp.item.getAverage_grade() + ", Rank: " + temp.item.getRank() +
+                    ", Grades: " + temp.item.getGrade1() + ", " + temp.item.getGrade2() + ", " + temp.item.getGrade3());
             temp = temp.next;
         }
     }

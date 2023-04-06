@@ -29,7 +29,7 @@ public class SLinkedList {
         while (current != null) {
             current.getElement().setRank(rank);
             rank++;
-            current.getElement().setAverage_grade(current.getElement().getGrade1()* 0.3 + current.getElement().getGrade2() * 0.2 + current.getElement().getGrade3() * 0.5);
+            current.getElement().setAverage_grade(current.getElement().getGrade1() * 0.3 + current.getElement().getGrade2() * 0.2 + current.getElement().getGrade3() * 0.5);
             current = current.getNext();
         }
 
@@ -53,12 +53,15 @@ public class SLinkedList {
             Node temp = head;
             for (int i = 0; i < size; i++) {
                 if (!(temp.getElement().getAverage_grade() < n.getElement().getAverage_grade())) {
-                    insertAfter(temp, n);
+                    insertAfter(get(i - 1), n);
                     ranks();
                     break;
                 }
+                if (temp == null)
+                    System.out.println("LinkedList'te sorun çıktı");
 
                 temp = temp.getNext();
+
             }
 
         }

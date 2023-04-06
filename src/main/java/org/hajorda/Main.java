@@ -11,7 +11,7 @@ package org.hajorda;
 import java.util.Scanner;
 
 public class Main {
-    public static void order66(Student st){
+    public static void order66(Student st) {
 
         Node newNode = new Node(st);
 
@@ -35,14 +35,11 @@ public class Main {
         while (true) {
 
             System.out.println("""
-                    =================================
-                    Chose an option
-
-                    1) Create a student
-                    2) Remove a student
-                    3) Summarize all the sudents
-                    4) Exit
-                    =================================""");
+                    Choose an option:
+                    1) Create a student:
+                    2) Remove a student:
+                    3) Summarize all students:
+                    4) Exit:""");
 
             Scanner sc = new Scanner(System.in);
             int input = sc.nextInt();
@@ -63,30 +60,30 @@ public class Main {
                 System.out.println("Enter the grade3 of the student.");
                 student.setGrade3(sc.nextDouble());
 
+                // The generated object is pushed both Stack and LinkledList
                 Stack.push(student);
-                System.out.println(student.toString() + " stacka pushlandı");
-
-                System.out.println("Hey");
-                Node t = new Node(student);
-                SLinkedList.push(t);
-                SLinkedList.printList();
+                SLinkedList.push(new Node(student));
 
 
-                System.out.println(student.getName()+"’s ID was "+student.getID()+". His grades were "+student.getGrade1()+", "+student.getGrade2()+" and "+student.getGrade3()+". He was ranked "+1+" in the class.");
+                System.out.println(student.getName() + "’s ID is " + student.getID() + ". His grades were " + student.getGrade1() + ", " + student.getGrade2()
+                        + " and " + student.getGrade3() + ". He was ranked " + student.getRank() + " in the class.");
 
-                System.out.println(student.getName());
             } else if (input == 2) { //Delete's Student
+                Student t = Stack.pop();
+                Student t1 = SLinkedList.removeFirst().getElement();
 
-                System.out.println(Stack.pop().getName() + " anasının nikahanıa gitti");
-                System.out.println(SLinkedList.removeFirst().getElement().getName() + "Silindi ");
+                System.out.println(t.getName() + "’s ID was " + t.getID() + ". His grades were " + t.getGrade1() + ", " + t.getGrade2()
+                        + " and " + t.getGrade3() + ". He was ranked " + t.getRank() + " in the class.");
+
+                if (!(t == t1))
+                    System.out.println("Silinen kişiler aynı değil boku yedik.");
 
             } else if (input == 3) { //Print's all students info
-                SLinkedList.printList();
-            } else if (input == 4) { //Exit
                 Stack.printStack();
+            } else if (input == 4) { //Exit
+                SLinkedList.printList();
                 //System.exit(0);
-            }
-            else{
+            } else {
                 System.out.println("Ben türkce bilmiyor");
             }
         }

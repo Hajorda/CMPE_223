@@ -1,6 +1,5 @@
-package org.hajorda;
 
-import java.util.Scanner;
+package org.hajorda;
 
 public class Student {
     private int ID;
@@ -9,9 +8,10 @@ public class Student {
     private double average_grade = grade1 * 0.3 + grade2 * 0.2 + grade3 * 0.5;
     private int rank;
 
-    public Student(){
+    public Student() {
         average_grade = grade1 * 0.3 + grade2 * 0.2 + grade3 * 0.5;
     }
+
     public int getID() {
         return ID;
     }

@@ -16,7 +16,7 @@ public class Stack {
         Node oldfirst = first;
         first = new Node();
         first.item = item;
-        first.next =oldfirst;
+        first.next = oldfirst;
     }
 
     public static Student pop() {

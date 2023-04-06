@@ -26,10 +26,11 @@ public class Stack {
     }
 
     public static void printStack(){
-        Node item = first;
-        while(item == null){
-            System.out.println(item);
-            item = item.next;
+        Node temp = first;
+        while(temp != null){
+            System.out.println(temp);
+            System.out.println(temp.item.getName() + " " +temp.item.getID() + " "+ temp.item.getAverage_grade());
+            temp = temp.next;
         }
     }
 }

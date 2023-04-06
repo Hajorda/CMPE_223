@@ -79,7 +79,7 @@ public class Main {
                 System.out.println(Stack.pop().getName());
 
             } else if (input == 3) { //Print's all students info
-
+                Stack.printStack();
             } else if (input == 4) { //Exit
 
                 System.exit(0);

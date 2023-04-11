@@ -45,21 +45,22 @@ public class Main {
             int input = sc.nextInt();
 
             if (input == 1) { //Creates Student
-                Student student = new Student();
+
 
 
                 System.out.println("Enter the ID of the student.");
-                student.setID(sc.nextInt());
+                int id = sc.nextInt();
                 String asdf = sc.nextLine();
                 System.out.println("Enter the name of the student.");
-                student.setName(sc.nextLine());
+                String name = sc.nextLine();
                 System.out.println("Enter the grade1 of the student.");
-                student.setGrade1(sc.nextDouble());
+                Double g1 = sc.nextDouble();
                 System.out.println("Enter the grade2 of the student.");
-                student.setGrade2(sc.nextDouble());
+                Double g2 = sc.nextDouble();
                 System.out.println("Enter the grade3 of the student.");
-                student.setGrade3(sc.nextDouble());
+                Double g3 = sc.nextDouble();
 
+                Student student = new Student(id,name,g1,g2,g3);
                 // The generated object is pushed both Stack and LinkledList
                 Stack.push(student);
                 SLinkedList.push(new Node(student));
@@ -70,13 +71,11 @@ public class Main {
 
             } else if (input == 2) { //Delete's Student
                 Student t = Stack.pop();
-                Student t1 = SLinkedList.removeFirst().getElement();
+                SLinkedList.remove(new Node(t));
 
                 System.out.println(t.getName() + "’s ID was " + t.getID() + ". His grades were " + t.getGrade1() + ", " + t.getGrade2()
                         + " and " + t.getGrade3() + ". He was ranked " + t.getRank() + " in the class.");
 
-                if (!(t == t1))
-                    System.out.println("Silinen kişiler aynı değil boku yedik.");
 
             } else if (input == 3) { //Print's all students info
                 Stack.printStack();

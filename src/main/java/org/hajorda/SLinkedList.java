@@ -35,13 +35,6 @@ public class SLinkedList {
 
     }
 
-    public static void push(Student student) {
-        Node newNode = new Node(student);
-        newNode.setNext(head);
-        head = newNode;
-        size++;
-        ranks();
-    }
 
     public static void push(Node n) {
         if (size == 0) {
@@ -52,8 +45,16 @@ public class SLinkedList {
         } else {
             Node temp = head;
             for (int i = 0; i < size; i++) {
-                if (!(temp.getElement().getAverage_grade() < n.getElement().getAverage_grade())) {
-                    insertAfter(get(i - 1), n);
+
+
+                if ((temp.getElement().getAverage_grade() < n.getElement().getAverage_grade())) {
+                    if(temp==head){
+                        n.setNext(head);
+                        head=n;
+                    }
+                    else{
+                        insertAfter(get(i - 1), n);
+                    }
                     ranks();
                     break;
                 }
@@ -80,17 +81,16 @@ public class SLinkedList {
 
 
     public static void insertAfter(Node v, Node n) {
-        n.setNext(v.getNext());
-        v.setNext(n);
+
+
+            n.setNext(v.getNext());
+
+            v.setNext(n);
+
+
         size++;
     }
 
-    public static void insertAfter(Node v, Student a) {
-        Node n = new Node(a);
-        n.setNext(v.getNext());
-        v.setNext(n);
-        size++;
-    }
 
     //return the i-th node
     public static Node get(int i) {
@@ -129,10 +129,4 @@ public class SLinkedList {
     // }
 
 }
-/* we’ll discuss the following methods
-        • addFirst(Node n)
-        • addAfter(Node n)
-        • Node get(int i)
-        • Node removeFirst()
-        • addLast(Node n)
-        • removeLast(Node n)*/
+

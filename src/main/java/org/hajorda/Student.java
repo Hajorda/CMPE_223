@@ -5,12 +5,18 @@ public class Student {
     private int ID;
     private String Name;
     private double grade1, grade2, grade3;
-    private double average_grade = grade1 * 0.3 + grade2 * 0.2 + grade3 * 0.5;
+    private double average_grade;
     private int rank;
 
-    public Student() {
+    public Student(int ID, String name, double grade1, double grade2, double grade3) {
+        this.ID = ID;
+        Name = name;
+        this.grade1 = grade1;
+        this.grade2 = grade2;
+        this.grade3 = grade3;
         average_grade = grade1 * 0.3 + grade2 * 0.2 + grade3 * 0.5;
     }
+
 
     public int getID() {
         return ID;

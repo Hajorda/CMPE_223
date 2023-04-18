@@ -1,7 +1,15 @@
+//-----------------------------------------------------
+// Title: Node Class
+// Author: Ali Bolat
+// ID: 35485311594
+// Section: 3
+// Assignment: 1
+// Description: This class is the node class for LinkedList's Node there are methods for the Modife the nodes and get data from nodes.
+//-----------------------------------------------------
 package org.Q3;
 
 /**
- * Node of a singly linked list of integers
+ * Node of a singly linked list of integers, There are two features element and next. Next is pointing the next Node and element is the storing for data in that situtation int.
  */
 public class Node {
     private int element;

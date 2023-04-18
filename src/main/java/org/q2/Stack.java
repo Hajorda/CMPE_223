@@ -1,5 +1,5 @@
 //-----------------------------------------------------
-// Title: Main Class
+// Title: Queue Class
 // Author: Ali Bolat
 // ID: 35485311594
 // Section: 3

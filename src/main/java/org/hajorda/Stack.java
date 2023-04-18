@@ -1,12 +1,13 @@
 package org.hajorda;
 
 public class Stack {
-    private static Node first = null;
 
     private static class Node {
         Student item;
         Node next;
     }
+    public static Node first = null;
+
 
     public boolean isEmpty() {
         return first == null;

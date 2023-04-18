@@ -1,3 +1,11 @@
+//-----------------------------------------------------
+// Title: Node Class
+// Author: Ali Bolat
+// ID: 35485311594
+// Section: 3
+// Assignment: 1
+// Description: This class is the node class for LinkedList's Node there are methods for the Modife the nodes and get data from nodes.
+//-----------------------------------------------------
 package org.Q3;
 
 public class LinkedList {
@@ -8,6 +16,7 @@ public class LinkedList {
         head = null;
     }
 
+    //Getter setter methods's
     public Node getHead() {
         return head;
     }
@@ -23,12 +32,13 @@ public class LinkedList {
     public void setSize(int size) {
         this.size = size;
     }
-
+//Push method for the pushing new items to linkedlist. It take's an object from Node class and it equilze it's next as a current head and after that it equilze head is a new node.
     public void push(Node n){
         n.setNext(head);
         head = n;
         size++;
     }
+    //Get methods takes an int and find that int's posion in linkedlist and return's it.
     public Node get(int i) {
         if (i >= size) //print error message and return null
             System.out.println("LinkedList'in boyutu o kadar değil kardeş");

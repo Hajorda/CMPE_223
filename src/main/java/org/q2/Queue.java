@@ -1,5 +1,5 @@
 //-----------------------------------------------------
-// Title: Main Class
+// Title: Queue Class
 // Author: Ali Bolat
 // ID: 35485311594
 // Section: 3
@@ -35,7 +35,7 @@ public class Queue {
         else oldlast.next = last;
     }
 
-    //Dequeue method using for deleting items from Queue when you delete something it replace first item as a second item. And there is also protection for when there is no item to wipe it will automaticly first item to null
+    //Dequeue method using for deleting items from Queue when you delete something it replace first item as a second item. And there is also protection for when there is no item to wipe it will automaticly replace first item to null
     //Also every time it wipe an item it also return that item.
     public static String dequeue() {
         String item = first.item;

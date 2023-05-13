@@ -1,10 +1,10 @@
 //-----------------------------------------------------
-// Title: Node Class
+// Title: LinkedList Class
 // Author: Ali Bolat
 // ID: 35485311594
 // Section: 3
 // Assignment: 1
-// Description: This class is the node class for LinkedList's Node there are methods for the Modife the nodes and get data from nodes.
+// Description: This class is LinkedList class
 //-----------------------------------------------------
 package org.Q3;
 

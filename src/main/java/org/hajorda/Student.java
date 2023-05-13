@@ -1,4 +1,11 @@
-
+//-----------------------------------------------------
+// Title: Stack Class
+// Author: Ali Bolat
+// ID: 35485311594
+// Section: 3
+// Assignment: 1
+// Description: Student class. It contains students features methods and informations.
+//-----------------------------------------------------
 package org.hajorda;
 
 public class Student {

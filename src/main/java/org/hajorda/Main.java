@@ -11,25 +11,7 @@ package org.hajorda;
 import java.util.Scanner;
 
 public class Main {
-    public static void order66(Student st) {
 
-        Node newNode = new Node(st);
-
-        // If the new node has a higher average grade than the head, insert at the beginning
-        if (newNode.getElement().getAverage_grade() > SLinkedList.head.getElement().getAverage_grade()) {
-            newNode.setNext(SLinkedList.head);
-            SLinkedList.head = newNode;
-            return;
-        }
-
-        // Otherwise, find the correct position to insert the new node
-        Node current = SLinkedList.head;
-        while (current.getNext() != null && current.getNext().getElement().getAverage_grade() >= newNode.getElement().getAverage_grade()) {
-            current = current.getNext();
-        }
-        newNode.setNext(current.getNext());
-        current.setNext(newNode);
-    }
 
     public static void main(String[] args) {
         while (true) {
@@ -63,7 +45,7 @@ public class Main {
                 Student student = new Student(id, name, g1, g2, g3);
                 // The generated object is pushed both Stack and LinkledList
                 Stack.push(student);
-                SLinkedList.push(new Node(student));
+                SLinkedList.add(new Node(student));
 
 
                 System.out.println(student.getName() + "’s ID is " + student.getID() + ". His grades were " + student.getGrade1() + ", " + student.getGrade2()
@@ -72,7 +54,7 @@ public class Main {
             } else if (input == 2) { //Delete's Student
                 try {
                     Student t = Stack.pop();
-                    SLinkedList.remove(new Node(t));
+                    SLinkedList.remove(t);
 
                     System.out.println(t.getName() + "’s ID was " + t.getID() + ". His grades were " + t.getGrade1() + ", " + t.getGrade2()
                             + " and " + t.getGrade3() + ". He was ranked " + t.getRank() + " in the class.");
@@ -82,7 +64,7 @@ public class Main {
             } else if (input == 3) { //Print's all students info
                 Stack.printStack();
             } else if (input == 4) { //Exit
-                SLinkedList.printList();
+
                 //System.exit(0);
             } else {
                 System.out.println("Ben türkce bilmiyor");

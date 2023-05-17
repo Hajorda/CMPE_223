@@ -15,11 +15,7 @@ public class Student implements Comparable<Student> {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
-                ", semesterNo=" + semesterNo +
-                '}';
+        return id+": "+name+" "+semesterNo;
     }
 
     public String getName() {

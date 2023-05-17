@@ -23,13 +23,16 @@ public class Merge {
         for (int k = lo; k <= hi; k++) // Merge back to a[lo..hi].
             if (i > mid) a[k] = aux[j++];
             else if (j > hi) a[k] = aux[i++];
-            else if (less(aux[j], aux[i])) a[k] = aux[j++];
+            else if (more(aux[j], aux[i])) a[k] = aux[j++];
             else a[k] = aux[i++];
 
     }
 
     private static boolean less(Comparable v, Comparable w) {
         return v.compareTo(w) < 0;
+    }
+    private static boolean more(Comparable v, Comparable w) {
+        return v.compareTo(w) > 0;
     }
 
     private static void exch(Comparable[] a, int i, int j) {

@@ -1,132 +1,171 @@
 package org.hajorda;
 
-/**
- * Singly linked list .
- */
-public class SLinkedList {
-    protected static Node head; // head node of the list
-    protected static int size = 0; // number of nodes in the list
 
-    public static Node getHead() {
-        return head;
-    }
 
-    public static int getSize() {
-        return size;
-    }
+public class  SLinkedList {
 
-    /**
-     * Default constructor that creates an empty list
-     */
+    private static int size; // size of double linkedlist
+    private static Node head;
+
+
+
     public SLinkedList() {
+        size=0;
         head = null;
 
     }
 
-    public static void ranks() {
-        int rank = 1;
-        Node current = head;
-        while (current != null) {
-            current.getElement().setRank(rank);
-            rank++;
-            current.getElement().setAverage_grade(current.getElement().getGrade1() * 0.3 + current.getElement().getGrade2() * 0.2 + current.getElement().getGrade3() * 0.5);
-            current = current.getNext();
-        }
 
+    //Getters and Setters methods
+    public int getSize() {
+        return size;
+    }
+
+    public void  setSize(int size) {
+        this.size = size;
+    }
+
+    public Node  getHead() {
+        return head;
+    }
+
+    public void setHead(Node head) {
+        this.head = head;
     }
 
 
-    public static void push(Node n) {
-        if (size == 0) {
-            n.setNext(head);
+
+
+    public static void add(Node n) {
+
+        if(head==null) {
+            //If head is null, this method adds to head
             head = n;
+            head.setPrevious(null);
+            head.setNext(null);
             size++;
-            ranks();
-        } else {
-            Node temp = head;
-            for (int i = 0; i < size; i++) {
+            setRanks();
 
+        }else {
 
-                if ((temp.getElement().getAverage_grade() < n.getElement().getAverage_grade())) {
-                    if(temp==head){
+            Node current = head;
+            do {
+                if(current.getElement().getAverage_grade() < n.getElement().getAverage_grade()) {
+                    if(head == current) {
                         n.setNext(head);
+                        n.setPrevious(null);
+                        head.setPrevious(n);
                         head=n;
                     }
-                    else{
-                        insertAfter(get(i - 1), n);
+                    else {
+                        n.setNext(current);
+                        n.setPrevious(current.getPrevious());
+                        current.setPrevious(n);
                     }
-                    ranks();
-                    break;
+                    size++;
+                    setRanks();
+                    return;
+
+
                 }
-                if (temp == null)
-                    System.out.println("LinkedList'te sorun çıktı");
+                else if(current.getNext()==null) {
+                    current.setNext(n);
+                    n.setPrevious(current);
+                    size++;
+                    setRanks();
+                    return;
+                }
 
-                temp = temp.getNext();
+                current = current.getNext();
 
-            }
+
+            } while (true);
+
+
+
 
         }
     }
 
-    public static void printList() {
+
+    private static void setRanks() {
+
+        int rank=1;
         Node current = head;
-        while (current != null) {
-            Student student = current.getElement();
-            System.out.println("Name: " + student.getName() + ", ID: " + student.getID() +
-                    ", Average Grade: " + student.getAverage_grade() + ", Rank: " + student.getRank()
-                    + ", Grades: " + student.getGrade1() + ", " + student.getGrade2() + ", " + student.getGrade3());
+        while(current != null) {
+            current.getElement().setRank(rank);
+            rank++;
+
+            current = current.getNext();
+
+        }
+    }
+
+
+
+
+
+    public static void remove(Student n) {
+
+        Node current = head;
+        while(true) {
+            if(head==null) {
+                return;
+            }
+
+            if(current.getElement() == n) {
+
+                if(n == head.getElement()) {
+                    if(current.getNext()!=null) {
+                        head = current.getNext();
+                        current.getNext().setPrevious(null);
+                        current.setPrevious(null);
+                        current.setNext(null);// I set these values null because of safety
+                    }else {
+                        head=null;
+                    }
+
+                }else if(current.getNext() ==null) {
+                    current.getPrevious().setNext(current.getNext());
+                    current.setPrevious(null);
+                    current.setNext(null);// I set these values null because of safety
+
+                }
+                else {
+                    current.getPrevious().setNext(current.getNext());
+                    current.getNext().setPrevious(current.getPrevious());
+                    current.setPrevious(null);
+                    current.setNext(null);// I set these values null because of safety
+
+                }
+                System.out.println(current.getElement().getName()+"'s ID was "+current.getElement().getID()+".His grades were "+current.getElement().getGrade1()+", "+current.getElement().getGrade2()+" and "+current.getElement().getGrade3()+". He was ranked "+current.getElement().getRank()+" in the class.");
+                setRanks();
+                size--;
+                return;
+            }
+
             current = current.getNext();
         }
+
     }
 
 
-    public static void insertAfter(Node v, Node n) {
 
 
-            n.setNext(v.getNext());
-
-            v.setNext(n);
 
 
-        size++;
-    }
 
 
-    //return the i-th node
-    public static Node get(int i) {
-        if (i >= size) //print error message and return null
-            System.out.println("LinkedListt'in boyutu o kadar değil kardeş");
 
-        Node ptr = head;
 
-        for (int k = 0; k < i; k++)
-            ptr = ptr.getNext();
-        return ptr;
-    }
 
-    public static void remove(Node a) {
-        Node temp = head;
-        for (int i = 0; i < size; i++) {
-            if (a == temp) {
-                a.setNext(get(i + 1));
-                System.out.println(a.getElement().getName() + "Silindi!");
-                break;
-            }
 
-            temp = temp.getNext();
-        }
-    }
 
-    public static Node removeFirst() {
-        Node n = head;
-        head = head.getNext();
-        n.setNext(null);
-        return n;
-    }
 
-    //public void addLast(Node n) {
-    //     insertAfter (get(size), n);
-    // }
+
+
+
+
+
 
 }
-

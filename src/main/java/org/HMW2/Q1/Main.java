@@ -63,6 +63,7 @@ public class Main {
         Scanner sc = new Scanner(intFile);
 
         int arraySize = sc.nextInt();
+        sc.nextLine();
         Comparable[] temp = new Comparable[arraySize];
 
         for (int i = 0; i < arraySize; i++) {

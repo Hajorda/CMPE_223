@@ -1,5 +1,12 @@
 package org.HMW2.Q1;
 import java.util.*;
+//------------------------------------------
+// Title: Quick sort class
+// Author: Ali Bolat
+// ID: 35485311594
+// Section: 3
+// Assignment: 2
+// -----------------------------------------
 public class Quick
 {
     public static void sort(Comparable[] a)

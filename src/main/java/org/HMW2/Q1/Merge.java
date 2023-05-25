@@ -1,5 +1,11 @@
 package org.HMW2.Q1;
-
+//------------------------------------------
+// Title: Merge Sort Class
+// Author: Ali Bolat
+// ID: 35485311594
+// Section: 3
+// Assignment: 2
+// -----------------------------------------
 public class Merge {
     private static Comparable[] aux; // auxiliary array for merges
 

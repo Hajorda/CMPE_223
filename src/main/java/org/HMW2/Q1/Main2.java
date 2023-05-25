@@ -1,9 +1,15 @@
 package org.HMW2.Q1;
 
-
 import java.util.Scanner;
-
+//------------------------------------------
+// Title: Main Class for Q2
+// Author: Ali Bolat
+// ID: 35485311594
+// Section: 3
+// Assignment: 2
+// -----------------------------------------
 public class Main2 {
+    // Selection Sort
     static void selection(Comparable[] array) {
         for(int i = 0 ; i < array.length;i++) {
             int min =i;
@@ -13,10 +19,9 @@ public class Main2 {
             }
             exch(array, i, min);
         }
-
-
-
     }
+
+    // Selection Sort in Descending Order
     static void selectionDescending(Comparable[] array) {
         for(int i = 0 ; i < array.length;i++) {
             int max =i;
@@ -26,14 +31,9 @@ public class Main2 {
             }
             exch(array, i, max);
         }
-
-
-
     }
 
-
-
-
+    // Insertion Sort
     static void insertion(Comparable[] array) {
         for(int i = 0;i <array.length;i++) {
             for(int j=i ; j >0;j--) {
@@ -42,9 +42,9 @@ public class Main2 {
                 else break;
             }
         }
-
     }
 
+    // Insertion Sort in Descending Order
     static void insertationDes(Comparable[] array) {
         for(int i = 0;i <array.length;i++) {
             for(int j=i ; j >0;j--) {
@@ -53,24 +53,22 @@ public class Main2 {
                 else break;
             }
         }
-
     }
 
-
+    // Merge Sort
     static void merge(Comparable[] array) {
         Comparable[] aux = new Integer[array.length];
         sort(array,aux,0,array.length-1);
-
     }
 
+    // Merge Sort in Descending Order
     static void mergeDes(Comparable[] array) {
         Comparable[] aux = new Integer[array.length];
         sortDes(array,aux,0,array.length-1);
-
     }
 
-    private static void sort(Comparable[] a, Comparable[] aux, int lo, int hi)
-    {
+    // Helper method for Merge Sort
+    private static void sort(Comparable[] a, Comparable[] aux, int lo, int hi) {
         if (hi <= lo) return;
         int mid = lo + (hi - lo) / 2;
         sort(a, aux, lo, mid);
@@ -78,8 +76,8 @@ public class Main2 {
         mergeHelper(a, aux, lo, mid, hi);
     }
 
-    private static void sortDes(Comparable[] a, Comparable[] aux, int lo, int hi)
-    {
+    // Helper method for Merge Sort in Descending Order
+    private static void sortDes(Comparable[] a, Comparable[] aux, int lo, int hi) {
         if (hi <= lo) return;
         int mid = lo + (hi - lo) / 2;
         sortDes(a, aux, lo, mid);
@@ -101,7 +99,48 @@ public class Main2 {
             else a[k] = aux[i++];
         }
     }
+// This code implements various sorting algorithms and a pairwise finding algorithm.
+// It provides options for selecting the sorting algorithm and processing an array.
+// The code is written in Java.
 
+// The mergeHelper() method is a helper function used in the merge sort algorithm.
+// It merges two subarrays of a given array.
+
+// The mergeHelperDes() method is a helper function used in the descending merge sort algorithm.
+// It merges two subarrays of a given array in descending order.
+
+// The quick() method performs the quicksort algorithm on the given array.
+
+// The quickDescending() method performs the descending quicksort algorithm on the given array.
+
+// The partition() method is a helper function used in the quicksort algorithm.
+// It partitions the array into two parts based on a pivot element.
+
+// The partitionDescending() method is a helper function used in the descending quicksort algorithm.
+// It partitions the array into two parts based on a pivot element in descending order.
+
+// The sort() method is a recursive function that implements the quicksort algorithm.
+// It sorts a subarray of the given array.
+
+// The sortDes() method is a recursive function that implements the descending quicksort algorithm.
+// It sorts a subarray of the given array in descending order.
+
+// The noSort() method finds the minimum and maximum pair in the array without performing any sorting.
+
+// The nosort2() method is a modified version of noSort() that works with a different data type and prints the result in a different format.
+
+// The random() method is similar to noSort() but works with a different data type and prints the result in a different format.
+
+// The findpairwise() method finds the minimum and maximum pairwise difference in the array.
+
+// The less() method compares two Comparable objects and returns true if the first one is less than the second one.
+
+// The more() method compares two Comparable objects and returns true if the first one is greater than the second one.
+
+// The exch() method exchanges two elements in the given array.
+
+    // The main() function is the entry point of the program.
+// It prompts the user to enter the desired sorting algorithm and an array, and then processes the array based on the chosen algorithm.
     private static void mergeHelperDes(Comparable[] a, Comparable[] aux, int lo, int mid, int hi)
     {
         for (int k = lo; k <= hi; k++)
@@ -386,7 +425,7 @@ public class Main2 {
                 noSort(a);
                 break;
             default:
-                System.out.println("Ujel , you entered wrong option");
+
         }
 
 

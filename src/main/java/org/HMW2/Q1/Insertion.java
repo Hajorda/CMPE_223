@@ -1,5 +1,11 @@
 package org.HMW2.Q1;
-
+//------------------------------------------
+// Title: Insertion sort  class
+// Author: Ali Bolat
+// ID: 35485311594
+// Section: 3
+// Assignment: 2
+// -----------------------------------------
 public class Insertion
 {
     public static void sort(Comparable[] a)

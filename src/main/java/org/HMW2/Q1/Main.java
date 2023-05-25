@@ -1,14 +1,21 @@
 package org.HMW2.Q1;
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.DoubleBuffer;
 import java.util.Scanner;
 
+//------------------------------------------
+// Title: Main class
+// Author: Ali Bolat
+// ID: 35485311594
+// Section: 3
+// Assignment: 2
+// -----------------------------------------
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 
+        // Perform each step and print the results
         step1();
         System.out.println("");
         step2();
@@ -23,7 +30,7 @@ public class Main {
 
     }
 
-
+    // Step 1: Read integers from a file, sort them in increasing order using insertion sort, and print the sorted array
     public static void step1() throws FileNotFoundException {
         System.out.println("Integers are reading from the integers.txt file, the array is:");
         File intFile = new File("integers.txt");
@@ -47,6 +54,8 @@ public class Main {
         System.out.println("");
         System.out.println("Step 1 has been completed.");
     }
+
+    // Step 2: Read integers from a file, sort them in decreasing order using insertion sort, and print the sorted array
     public static void step2() throws FileNotFoundException {
         System.out.println("The array of integers that has been sorted in decreasing order by using the insertion sort algorithm:");
         File intFile = new File("integers.txt");
@@ -70,6 +79,8 @@ public class Main {
         System.out.println("");
         System.out.println("Step 2 has been completed.");
     }
+
+    // Step 3: Read doubles from a file, sort them in increasing order using insertion sort, and print the sorted array
     public static void step3() throws FileNotFoundException {
         File intFile = new File("doubles.txt");
         System.out.println("Doubles are reading from the doubles.txt file, the array is:");
@@ -80,7 +91,6 @@ public class Main {
         Comparable[] temp = new Comparable[arraySize];
 
         for (int i = 0; i < arraySize; i++) {
-
             double data = Double.parseDouble(sc.nextLine());
             temp[i] = data;
             System.out.print(data+" ");
@@ -95,6 +105,7 @@ public class Main {
         System.out.println("Step 3 has been completed.");
     }
 
+    // Step 4: Read integers from a file, sort them in descending order using merge sort, and print the sorted array
     public static void step4() throws FileNotFoundException {
         File intFile = new File("integers.txt");
         System.out.println("The original array is:");
@@ -118,16 +129,14 @@ public class Main {
         System.out.println("Step 4 has been completed.");
     }
 
+    // Step 6: Read student information from a file, sort them using quicksort, and print the sorted array
     public static void step6() throws FileNotFoundException {
-
         Comparable[] students = new Comparable[10];
 
         Scanner studentSc = new Scanner(new File("student.txt"));
 
         for (int i = 0; studentSc.hasNext(); i++) {
-
             String[] std = studentSc.nextLine().split(",");
-
             Student t = new Student(std[0], Long.parseLong(std[1]), Integer.parseInt(std[2]));
             students[i] = t;
         }
@@ -140,16 +149,15 @@ public class Main {
         System.out.println("");
         System.out.println("Step 6 has been completed.");
     }
-    public static void step7() throws FileNotFoundException {
 
+    // Step 7: Read student information from a file, sort them using an alternative quicksort implementation, and print the sorted array
+    public static void step7() throws FileNotFoundException {
         Comparable[] students = new Comparable[10];
 
         Scanner studentSc = new Scanner(new File("student.txt"));
 
         for (int i = 0; studentSc.hasNext(); i++) {
-
             String[] std = studentSc.nextLine().split(",");
-
             Student t = new Student(std[0], Long.parseLong(std[1]), Integer.parseInt(std[2]));
             students[i] = t;
         }

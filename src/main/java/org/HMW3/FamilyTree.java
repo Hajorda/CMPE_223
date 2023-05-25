@@ -66,6 +66,7 @@ public class FamilyTree {
 
     }
 
+
     static Node root;
 
 
@@ -106,7 +107,71 @@ public class FamilyTree {
                 return true;
             }
         }
+
         return false;
+    }
+
+    public static void printAllDescendants(int id) {
+        Node node = searchNode(root, id);
+        if (node != null) {
+            printDescendants(node);
+        }
+    }
+
+    private static void printDescendants(Node node) {
+        for (Node child : node.down) {
+            System.out.println(child.name + " (ID: " + child.id + ")");
+            printDescendants(child);
+        }
+    }
+
+    public static boolean checkSibling(int id1, int id2) {
+        Node node1 = searchNode(root, id1);
+        Node node2 = searchNode(root, id2);
+
+        if (node1 != null && node2 != null && node1.up == node2.up) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static void findFirstOldestCommonRelative(int id1, int id2) {
+        Node node1 = searchNode(root, id1);
+        Node node2 = searchNode(root, id2);
+
+        if (node1 != null && node2 != null) {
+            ArrayList<Node> ancestors1 = getAncestors(node1);
+            ArrayList<Node> ancestors2 = getAncestors(node2);
+
+            if (ancestors1.isEmpty() || ancestors2.isEmpty()) {
+                System.out.println("No common relative found.");
+                return;
+            }
+
+            for (Node ancestor1 : ancestors1) {
+                for (Node ancestor2 : ancestors2) {
+                    if (!ancestor1.name.equals(ancestor2.name) && !ancestor1.equals(node2) && !ancestor2.equals(node1)) {
+                        System.out.println("First oldest common relative: " + ancestor1.name);
+                        return;
+                    }
+                }
+            }
+        }
+
+        System.out.println("No common relative found.");
+    }
+
+    private static ArrayList<Node> getAncestors(Node node) {
+        ArrayList<Node> ancestors = new ArrayList<>();
+        Node current = node.up;
+
+        while (current != null) {
+            ancestors.add(current);
+            current = current.up;
+        }
+
+        return ancestors;
     }
 
 }

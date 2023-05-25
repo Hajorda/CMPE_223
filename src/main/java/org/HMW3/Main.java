@@ -17,6 +17,6 @@ public class Main {
             System.out.println(p1[0]+" --> "+p2[0]);
             FamilyTree.insert(p1[0],Integer.parseInt(p1[1]),p2[0],Integer.parseInt(p2[1]));
         }
-        System.out.println(FamilyTree.checkAncestor(2,1));
+
     }
 }

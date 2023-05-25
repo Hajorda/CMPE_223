@@ -1,5 +1,7 @@
 package org.HMW3;
+
 import java.util.ArrayList;
+
 public class FamilyTree {
 
     //Node for the Tree
@@ -10,7 +12,7 @@ public class FamilyTree {
         ArrayList<Node> down;
 
         //Constructor for the node
-        public Node(String name,int id) {
+        public Node(String name, int id) {
             this.name = name;
             this.up = null;
             this.down = null;
@@ -21,18 +23,18 @@ public class FamilyTree {
 
     private static Node searchNode(Node currentNode, String name, int id) {
         if (currentNode == null) {
-            System.out.println("burda");
+            //   System.out.println("burda");
             return null;
         }
         if (currentNode.name.equals(name) && currentNode.id == id) {
-            System.out.println("burda2");
+            //  System.out.println("burda2");
             return currentNode;
         }
         // Recursively search in the down subtrees
         if (currentNode.down != null) {
-            System.out.println("burda3");
+            //  System.out.println("burda3");
             for (int i = 0; i < currentNode.down.size(); i++) {
-                System.out.println(i+" " + currentNode.down.get(i).name + " " + currentNode.down.get(i).id + " " + name + " " + id);
+                //System.out.println(i+" " + currentNode.down.get(i).name + " " + currentNode.down.get(i).id + " " + name + " " + id);
                 Node foundNode = searchNode(currentNode.down.get(i), name, id);
                 if (foundNode != null) {
                     return foundNode;
@@ -43,18 +45,18 @@ public class FamilyTree {
 
     }
 
-    private static Node searchNode(Node currentNode,int id) {
+    private static Node searchNode(Node currentNode, int id) {
         if (currentNode == null) {
-            System.out.println("burda");
+            // System.out.println("burda");
             return null;
         }
         if (currentNode.id == id) {
-            System.out.println("burda2");
+            //  System.out.println("burda2");
             return currentNode;
         }
         // Recursively search in the down subtrees
         if (currentNode.down != null) {
-            System.out.println("burda3");
+            // System.out.println("burda3");
             for (int i = 0; i < currentNode.down.size(); i++) {
                 Node foundNode = searchNode(currentNode.down.get(i), id);
                 if (foundNode != null) {
@@ -70,40 +72,43 @@ public class FamilyTree {
     static Node root;
 
 
-    public static void insert(String parentName,int parentId,String childName,int childId){
-        System.out.println(root);
-        if(root==null){
-            System.out.println("Root eşitlendi ilk");
-            Node parent = new Node(parentName,parentId);
-            Node child = new Node(childName,childId);
+    public static void insert(String parentName, int parentId, String childName, int childId) {
+        // System.out.println(root);
+        if (root == null) {
+            // System.out.println("Root eşitlendi ilk");
+            Node parent = new Node(parentName, parentId);
+            Node child = new Node(childName, childId);
+            child.up = parent;
             parent.down.add(child);
             root = parent;
             return;
         }
-        Node parent = searchNode(root,parentName,parentId);
+        Node parent = searchNode(root, parentName, parentId);
         if (parent == null) {
-            System.out.println("Parent node not found.");
+            System.out.println("YETİM");
             return;
         }
-        Node child = new Node(childName,childId);
+        Node child = new Node(childName, childId);
+        child.up = parent;
         parent.down.add(child);
-        System.out.println("Başarılı!");
+        //System.out.println("Başarılı!");
     }
 
 
-    public static boolean checkAncestor(int id1, int id2){
-        Node c = searchNode(root,id2);
-        for(int i = 0; i < searchNode(root,id1).down.size() ; i++){
-            if(searchNode(root,id1).down.get(i).equals(c)){
+    public static boolean checkAncestor(int id1, int id2) {
+        Node c = searchNode(root, id2);
+        for (int i = 0; i < searchNode(root, id1).down.size(); i++) {
+            if (searchNode(root, id1).down.get(i).equals(c)) {
                 return true;
             }
         }
         return false;
     }
-    public static boolean checkDescentdant(int id2, int id1){
-        Node c = searchNode(root,id2);
-        for(int i = 0; i < searchNode(root,id1).down.size() ; i++){
-            if(searchNode(root,id1).down.get(i).equals(c)){
+
+    public static boolean checkDescentdant(int id2, int id1) {
+        Node c = searchNode(root, id2);
+        for (int i = 0; i < searchNode(root, id1).down.size(); i++) {
+            if (searchNode(root, id1).down.get(i).equals(c)) {
                 return true;
             }
         }
@@ -116,14 +121,36 @@ public class FamilyTree {
         if (node != null) {
             printDescendants(node);
         }
+        System.out.println("");
     }
 
+    //        private static void printDescendants(Node node) {
+//
+//        for (int i = 0 ; i < node.down.size() ; i++) {
+//            System.out.print(","+node.down.get(i).name);
+//            printDescendants(node.down.get(i));
+//        }
+//    }
+
     private static void printDescendants(Node node) {
-        for (Node child : node.down) {
-            System.out.println(child.name + " (ID: " + child.id + ")");
-            printDescendants(child);
+
+        for (int i = 0; i < node.down.size(); i++) {
+            if (i == 0) {
+                System.out.print(node.down.get(i).name);
+            } else {
+                System.out.print("," + node.down.get(i).name);
+                printDescendants(node.down.get(i));
+            }
         }
     }
+
+
+//    private static void printDescendants(Node node) {
+//        for (Node child : node.down) {
+//            System.out.print(","+child.name);
+//            printDescendants(child);
+//        }
+//    }
 
     public static boolean checkSibling(int id1, int id2) {
         Node node1 = searchNode(root, id1);
@@ -145,14 +172,14 @@ public class FamilyTree {
             ArrayList<Node> ancestors2 = getAncestors(node2);
 
             if (ancestors1.isEmpty() || ancestors2.isEmpty()) {
-                System.out.println("No common relative found.");
+                System.out.println("ZORT Anecestors boş");
                 return;
             }
 
             for (Node ancestor1 : ancestors1) {
                 for (Node ancestor2 : ancestors2) {
-                    if (!ancestor1.name.equals(ancestor2.name) && !ancestor1.equals(node2) && !ancestor2.equals(node1)) {
-                        System.out.println("First oldest common relative: " + ancestor1.name);
+                    if (ancestor1.name.equals(ancestor2.name) && !ancestor1.equals(node2) && !ancestor2.equals(node1)) {
+                        System.out.println(ancestor1.name);
                         return;
                     }
                 }

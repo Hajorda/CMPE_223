@@ -13,18 +13,22 @@ import java.util.Scanner;
 
 public class Tester extends Main2 {
 
-    // Method to find the pairwise difference in the array
-    static void findpairwise(Comparable[] array) {
-        int ABS = (int) array[1] - (int) array[0];
-        int min = (int) array[0];
-        int max = (int) array[1];
+    // Method to find the pairwise difference in the a
+    static void findPairWise3(Comparable[] a) {
 
-        for (int j = 0; j < array.length - 1; j++) {
-            int temp = (int) array[j + 1] - (int) array[j];
+        int ABS = (int) a[1] - (int) a[0];
+
+        int min = (int) a[0];
+        int max = (int) a[1];
+
+        for (int j = 0; j < a.length - 1; j++) {
+
+            int temp = (int) a[j + 1] - (int) a[j];
+
             if (ABS > temp) {
                 ABS = temp;
-                min = (int) array[j];
-                max = (int) array[j + 1];
+                min = (int) a[j];
+                max = (int) a[j + 1];
             }
         }
 
@@ -32,17 +36,20 @@ public class Tester extends Main2 {
     }
 
     // Method to find the pairwise difference in the array (variant 2)
-    static void findpairwise2(Comparable[] array) {
-        int ABS = (int) array[0] - (int) array[1];
-        int min = (int) array[1];
-        int max = (int) array[0];
+    static void findPairWise2(Comparable[] a) {
+        int ABS = (int) a[0] - (int) a[1];
+        int min = (int) a[1];
+        int max = (int) a[0];
 
-        for (int j = 0; j < array.length - 1; j++) {
-            int temp = (int) array[j] - (int) array[j + 1];
+        for (int j = 0; j < a.length - 1; j++) {
+
+            int temp = (int) a[j] - (int) a[j + 1];
+
             if (ABS > temp) {
+
                 ABS = temp;
-                min = (int) array[j + 1];
-                max = (int) array[j];
+                min = (int) a[j + 1];
+                max = (int) a[j];
             }
         }
 
@@ -50,16 +57,22 @@ public class Tester extends Main2 {
     }
 
     public static void main(String[] args) {
-        Scanner scn = new Scanner(System.in);
-        System.out.println("Enter a seed to create randomly generated values:");
-        long seed = scn.nextLong();
-        Random random = new Random(seed);
-        System.out.println("Seed: " + seed);
 
-        long time;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter a seed to create randomly generated values:");
+
+        long s = sc.nextLong();
+
+        Random random = new Random(s);
+
+        System.out.println("Seed: " + s);
+
+        long t;
         Integer[] a;
 
         for (int x = 250; x <= 64000; x *= 4) {
+
             System.out.println();
             System.out.println("Input size: " + x);
             System.out.println();
@@ -76,19 +89,21 @@ public class Tester extends Main2 {
 
             // Sorting and finding pairwise difference (random)
             for (int i = 1; i <= 3; i++) {
-                time = System.currentTimeMillis();
+
+                t = System.currentTimeMillis();
                 random(a);
-                System.out.println(System.currentTimeMillis() - time);
+                System.out.println(System.currentTimeMillis() - t);
             }
 
             System.out.println("Ascending");
 
             // Sorting, finding pairwise difference, and shuffling array (ascending)
             for (int i = 1; i <= 3; i++) {
-                time = System.currentTimeMillis();
-                selection(a);
-                findpairwise(a);
-                System.out.println(System.currentTimeMillis() - time);
+
+                t = System.currentTimeMillis();
+                select(a);
+                findPairWise3(a);
+                System.out.println(System.currentTimeMillis() - t);
                 StdRandom.shuffle(a);
             }
 
@@ -96,10 +111,11 @@ public class Tester extends Main2 {
 
             // Sorting, finding pairwise difference, and shuffling array (descending)
             for (int i = 1; i <= 3; i++) {
-                time = System.currentTimeMillis();
-                selectionDescending(a);
-                findpairwise2(a);
-                System.out.println(System.currentTimeMillis() - time);
+
+                t = System.currentTimeMillis();
+                selectDes(a);
+                findPairWise2(a);
+                System.out.println(System.currentTimeMillis() - t);
                 StdRandom.shuffle(a);
             }
 
@@ -109,19 +125,22 @@ public class Tester extends Main2 {
 
             // Sorting and finding pairwise difference (random)
             for (int i = 1; i <= 3; i++) {
-                time = System.currentTimeMillis();
+
+                t = System.currentTimeMillis();
                 random(a);
-                System.out.println(System.currentTimeMillis() - time);
+                System.out.println(System.currentTimeMillis() - t);
+
             }
 
             System.out.println("Ascending");
 
             // Sorting, finding pairwise difference, and shuffling array (ascending)
             for (int i = 1; i <= 3; i++) {
-                time = System.currentTimeMillis();
+
+                t = System.currentTimeMillis();
                 insertion(a);
-                findpairwise(a);
-                System.out.println(System.currentTimeMillis() - time);
+                findPairWise3(a);
+                System.out.println(System.currentTimeMillis() - t);
                 StdRandom.shuffle(a);
             }
 
@@ -129,11 +148,13 @@ public class Tester extends Main2 {
 
             // Sorting, finding pairwise difference, and shuffling array (descending)
             for (int i = 1; i <= 3; i++) {
-                time = System.currentTimeMillis();
+
+                t = System.currentTimeMillis();
                 insertationDes(a);
-                findpairwise2(a);
-                System.out.println(System.currentTimeMillis() - time);
+                findPairWise2(a);
+                System.out.println(System.currentTimeMillis() - t);
                 StdRandom.shuffle(a);
+
             }
 
             System.out.println();
@@ -142,31 +163,37 @@ public class Tester extends Main2 {
 
             // Sorting and finding pairwise difference (random)
             for (int i = 1; i <= 3; i++) {
-                time = System.currentTimeMillis();
+
+                t = System.currentTimeMillis();
                 random(a);
-                System.out.println(System.currentTimeMillis() - time);
+                System.out.println(System.currentTimeMillis() - t);
+
             }
 
             System.out.println("Ascending");
 
             // Sorting, finding pairwise difference, and shuffling array (ascending)
             for (int i = 1; i <= 3; i++) {
-                time = System.currentTimeMillis();
+
+                t = System.currentTimeMillis();
                 merge(a);
-                findpairwise(a);
-                System.out.println(System.currentTimeMillis() - time);
+                findPairWise3(a);
+                System.out.println(System.currentTimeMillis() - t);
                 StdRandom.shuffle(a);
+
             }
 
             System.out.println("Descending");
 
             // Sorting, finding pairwise difference, and shuffling array (descending)
             for (int i = 1; i <= 3; i++) {
-                time = System.currentTimeMillis();
+
+                t = System.currentTimeMillis();
                 mergeDes(a);
-                findpairwise2(a);
-                System.out.println(System.currentTimeMillis() - time);
+                findPairWise2(a);
+                System.out.println(System.currentTimeMillis() - t);
                 StdRandom.shuffle(a);
+
             }
 
             System.out.println();
@@ -175,31 +202,37 @@ public class Tester extends Main2 {
 
             // Sorting and finding pairwise difference (random)
             for (int i = 1; i <= 3; i++) {
-                time = System.currentTimeMillis();
+
+                t = System.currentTimeMillis();
                 random(a);
-                System.out.println(System.currentTimeMillis() - time);
+                System.out.println(System.currentTimeMillis() - t);
+
             }
 
             System.out.println("Ascending");
 
             // Sorting, finding pairwise difference, and shuffling array (ascending)
             for (int i = 1; i <= 3; i++) {
-                time = System.currentTimeMillis();
+
+                t = System.currentTimeMillis();
                 quick(a);
-                findpairwise(a);
-                System.out.println(System.currentTimeMillis() - time);
+                findPairWise3(a);
+                System.out.println(System.currentTimeMillis() - t);
                 StdRandom.shuffle(a);
+
             }
 
             System.out.println("Descending");
 
             // Sorting, finding pairwise difference, and shuffling array (descending)
             for (int i = 1; i <= 3; i++) {
-                time = System.currentTimeMillis();
-                quickDescending(a);
-                findpairwise2(a);
-                System.out.println(System.currentTimeMillis() - time);
+
+                t = System.currentTimeMillis();
+                quickDes(a);
+                findPairWise2(a);
+                System.out.println(System.currentTimeMillis() - t);
                 StdRandom.shuffle(a);
+
             }
 
             System.out.println();
@@ -208,29 +241,35 @@ public class Tester extends Main2 {
 
             // Sorting and finding pairwise difference (random)
             for (int i = 1; i <= 3; i++) {
-                time = System.currentTimeMillis();
+
+                t = System.currentTimeMillis();
                 random(a);
-                System.out.println(System.currentTimeMillis() - time);
+                System.out.println(System.currentTimeMillis() - t);
+
             }
 
             System.out.println("Ascending");
 
             // Finding pairwise difference (ascending)
             for (int i = 1; i <= 3; i++) {
-                time = System.currentTimeMillis();
+
+                t = System.currentTimeMillis();
                 nosort2(a);
-                System.out.println(System.currentTimeMillis() - time);
+                System.out.println(System.currentTimeMillis() - t);
                 StdRandom.shuffle(a);
+
             }
 
             System.out.println("Descending");
 
             // Finding pairwise difference (descending)
             for (int i = 1; i <= 3; i++) {
-                time = System.currentTimeMillis();
+
+                t = System.currentTimeMillis();
                 nosort2(a);
-                System.out.println(System.currentTimeMillis() - time);
+                System.out.println(System.currentTimeMillis() - t);
                 StdRandom.shuffle(a);
+
             }
         }
     }

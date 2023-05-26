@@ -1,6 +1,7 @@
 package org.HMW2.Q1;
 
 import java.util.Scanner;
+
 //------------------------------------------
 // Title: Main Class for Q2
 // Author: Ali Bolat
@@ -9,94 +10,93 @@ import java.util.Scanner;
 // Assignment: 2
 // -----------------------------------------
 public class Main2 {
-    // Selection Sort
-    static void selection(Comparable[] array) {
-        for(int i = 0 ; i < array.length;i++) {
-            int min =i;
-            for(int j = i+1 ; j <array.length;j++) {
-                if(less(array[j],array[min]))
-                    min = j;
-            }
-            exch(array, i, min);
-        }
-    }
+
 
     // Selection Sort in Descending Order
-    static void selectionDescending(Comparable[] array) {
-        for(int i = 0 ; i < array.length;i++) {
-            int max =i;
-            for(int j = i+1 ; j <array.length;j++) {
-                if(more(array[j],array[max]))
+    static void selectDes(Comparable[] a) {
+
+        for (int i = 0; i < a.length; i++) {
+            int max = i;
+
+            for (int j = i + 1; j < a.length; j++) {
+                if (more(a[j], a[max]))
                     max = j;
             }
-            exch(array, i, max);
+            exch(a, i, max);
         }
     }
 
     // Insertion Sort
-    static void insertion(Comparable[] array) {
-        for(int i = 0;i <array.length;i++) {
-            for(int j=i ; j >0;j--) {
-                if(less(array[j],array[j-1]))
-                    exch(array, j, j-1);
+    static void insertion(Comparable[] a) {
+        for (int i = 0; i < a.length; i++) {
+            for (int j = i; j > 0; j--) {
+                if (less(a[j], a[j - 1]))
+                    exch(a, j, j - 1);
                 else break;
             }
         }
     }
 
     // Insertion Sort in Descending Order
-    static void insertationDes(Comparable[] array) {
-        for(int i = 0;i <array.length;i++) {
-            for(int j=i ; j >0;j--) {
-                if(more(array[j],array[j-1]))
-                    exch(array, j, j-1);
+    static void insertationDes(Comparable[] a) {
+
+        for (int i = 0; i < a.length; i++) {
+
+            for (int j = i; j > 0; j--) {
+
+                if (more(a[j], a[j - 1]))
+                    exch(a, j, j - 1);
                 else break;
             }
         }
     }
 
-    // Merge Sort
-    static void merge(Comparable[] array) {
-        Comparable[] aux = new Integer[array.length];
-        sort(array,aux,0,array.length-1);
+
+    // Selection Sort
+    static void select(Comparable[] a) {
+
+        for (int i = 0; i < a.length; i++) {
+
+            int m = i;
+
+            for (int j = i + 1; j < a.length; j++) {
+                if (less(a[j], a[m]))
+                    m = j;
+            }
+            exch(a, i, m);
+        }
     }
 
     // Merge Sort in Descending Order
-    static void mergeDes(Comparable[] array) {
-        Comparable[] aux = new Integer[array.length];
-        sortDes(array,aux,0,array.length-1);
-    }
+    static void mergeDes(Comparable[] a) {
 
-    // Helper method for Merge Sort
-    private static void sort(Comparable[] a, Comparable[] aux, int lo, int hi) {
-        if (hi <= lo) return;
-        int mid = lo + (hi - lo) / 2;
-        sort(a, aux, lo, mid);
-        sort(a, aux, mid+1, hi);
-        mergeHelper(a, aux, lo, mid, hi);
-    }
+        Comparable[] aux = new Integer[a.length];
+        sortDes(a, aux, 0, a.length - 1);
 
-    // Helper method for Merge Sort in Descending Order
-    private static void sortDes(Comparable[] a, Comparable[] aux, int lo, int hi) {
-        if (hi <= lo) return;
-        int mid = lo + (hi - lo) / 2;
-        sortDes(a, aux, lo, mid);
-        sortDes(a, aux, mid+1, hi);
-        mergeHelperDes(a, aux, lo, mid, hi);
     }
 
 
-    private static void mergeHelper(Comparable[] a, Comparable[] aux, int lo, int mid, int hi)
-    {
+    // Merge Sort
+    static void merge(Comparable[] a) {
+
+        Comparable[] aux = new Integer[a.length];
+
+        sort(a, aux, 0, a.length - 1);
+    }
+
+    private static void mergeHelper(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
+
         for (int k = lo; k <= hi; k++)
             aux[k] = a[k];
-        int i = lo, j = mid+1;
-        for (int k = lo; k <= hi; k++)
-        {
+        int i = lo, j = mid + 1;
+
+        for (int k = lo; k <= hi; k++) {
+
             if (i > mid) a[k] = aux[j++];
             else if (j > hi) a[k] = aux[i++];
             else if (less(aux[j], aux[i])) a[k] = aux[j++];
             else a[k] = aux[i++];
+
         }
     }
 // This code implements various sorting algorithms and a pairwise finding algorithm.
@@ -141,36 +141,46 @@ public class Main2 {
 
     // The main() function is the entry point of the program.
 // It prompts the user to enter the desired sorting algorithm and an array, and then processes the array based on the chosen algorithm.
-    private static void mergeHelperDes(Comparable[] a, Comparable[] aux, int lo, int mid, int hi)
-    {
+
+    private static void mergeHelperDes(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
+
         for (int k = lo; k <= hi; k++)
             aux[k] = a[k];
-        int i = lo, j = mid+1;
-        for (int k = lo; k <= hi; k++)
-        {
+        int i = lo, j = mid + 1;
+        for (int k = lo; k <= hi; k++) {
             if (i > mid) a[k] = aux[j++];
             else if (j > hi) a[k] = aux[i++];
             else if (more(aux[j], aux[i])) a[k] = aux[j++];
             else a[k] = aux[i++];
         }
     }
-    static void quick(Comparable[] array) {
-        StdRandom.shuffle(array);
-        sort(array, 0, array.length - 1);
 
+    // Helper method for Merge Sort
+    private static void sort(Comparable[] a, Comparable[] aux, int lo, int hi) {
 
+        if (hi <= lo) return;
+        int mid = lo + (hi - lo) / 2;
+        sort(a, aux, lo, mid);
+        sort(a, aux, mid + 1, hi);
+        mergeHelper(a, aux, lo, mid, hi);
     }
-    static void quickDescending(Comparable[] array) {
-        StdRandom.shuffle(array);
-        sortDes(array, 0, array.length - 1);
 
+    // Helper method for Merge Sort in Descending Order
+    private static void sortDes(Comparable[] a, Comparable[] aux, int lo, int hi) {
 
+        if (hi <= lo) return;
+        int mid = lo + (hi - lo) / 2;
+        sortDes(a, aux, lo, mid);
+        sortDes(a, aux, mid + 1, hi);
+        mergeHelperDes(a, aux, lo, mid, hi);
     }
-    private static int partition(Comparable[] a, int lo, int hi)
-    {
-        int i = lo, j = hi+1;
-        while (true)
-        {
+
+    private static int partition(Comparable[] a, int lo, int hi) {
+
+        int i = lo, j = hi + 1;
+
+        while (true) {
+
             while (less(a[++i], a[lo]))
                 if (i == hi) break;
             while (less(a[lo], a[--j]))
@@ -182,11 +192,12 @@ public class Main2 {
         return j;
     }
 
-    private static int partitionDescending(Comparable[] a, int lo, int hi)
-    {
-        int i = lo, j = hi+1;
-        while (true)
-        {
+    private static int partitionDes(Comparable[] a, int lo, int hi) {
+
+        int i = lo, j = hi + 1;
+
+        while (true) {
+
             while (more(a[++i], a[lo]))
                 if (i == hi) break;
             while (more(a[lo], a[--j]))
@@ -194,243 +205,287 @@ public class Main2 {
             if (i >= j) break;
             exch(a, i, j);
         }
+
         exch(a, lo, j);
         return j;
     }
 
-    private static void sort(Comparable[] a, int lo, int hi)
-    {
+    static void quick(Comparable[] a) {
+
+        StdRandom.shuffle(a);
+        sort(a, 0, a.length - 1);
+
+
+    }
+
+    static void quickDes(Comparable[] a) {
+        StdRandom.shuffle(a);
+        sortDes(a, 0, a.length - 1);
+
+
+    }
+
+
+    static void random(Comparable[] a) {
+        long ABS = Math.abs((long) ((int) a[1] - (int) a[0]));
+
+        int min, max;
+
+        if (less(a[0], a[1])) {
+            min = (int) a[0];
+            max = (int) a[1];
+        } else {
+            max = (int) a[0];
+            min = (int) a[1];
+
+        }
+
+        for (int i = 0; i < a.length - 1; i++) {
+
+            for (int j = i + 1; j < a.length; j++) {
+
+                long temp = Math.abs((long) ((int) a[i] - (int) a[j]));
+
+                if (ABS > temp) {
+
+                    ABS = temp;
+                    if (less(a[i], a[j])) {
+
+                        min = (int) a[i];
+                        max = (int) a[j];
+
+                    } else {
+
+                        max = (int) a[i];
+                        min = (int) a[j];
+
+                    }
+
+
+                } else if (ABS == temp) {
+
+                    if ((int) min + (int) max > ((int) a[i] + (int) a[j])) {
+
+                        if (less(a[i], a[j])) {
+                            min = (int) a[i];
+                            max = (int) a[j];
+                        } else {
+                            max = (int) a[i];
+                            min = (int) a[j];
+
+                        }
+
+                    }
+                }
+
+            }
+        }
+        System.out.println(ABS + " [" + min + " " + max + "]");
+    }
+
+    static void noSort(Comparable[] a) {
+
+        int ABS = Math.abs((int) a[1] - (int) a[0]);
+        int min, max;
+
+        if (less(a[0], a[1])) {
+
+            min = (int) a[0];
+            max = (int) a[1];
+
+        } else {
+            max = (int) a[0];
+            min = (int) a[1];
+
+        }
+
+        for (int i = 0; i < a.length - 1; i++) {
+
+            for (int j = i + 1; j < a.length; j++) {
+
+                int temp = Math.abs((int) a[i] - (int) a[j]);
+
+                if (ABS > temp) {
+                    ABS = temp;
+
+                    if (less(a[i], a[j])) {
+
+                        min = (int) a[i];
+                        max = (int) a[j];
+                    } else {
+
+                        max = (int) a[i];
+                        min = (int) a[j];
+
+                    }
+
+
+                } else if (ABS == temp) {
+                    if ((int) min + (int) max > ((int) a[i] + (int) a[j])) {
+                        if (less(a[i], a[j])) {
+                            min = (int) a[i];
+                            max = (int) a[j];
+                        } else {
+                            max = (int) a[i];
+                            min = (int) a[j];
+
+                        }
+
+                    }
+                }
+
+            }
+        }
+        System.out.println("ABS:" + ABS + ", Min=" + min + ", Max=" + max);
+    }
+
+    static void nosort2(Comparable[] a) {
+
+        long ABS = Math.abs((long) ((int) a[1] - (int) a[0]));
+
+        int min, max;
+        
+        if (less(a[0], a[1])) {
+            
+            min = (int) a[0];
+            max = (int) a[1];
+        } else {
+            
+            max = (int) a[0];
+            min = (int) a[1];
+
+        }
+
+        for (int i = 0; i < a.length - 1; i++) {
+            for (int j = i + 1; j < a.length; j++) {
+                long temp = Math.abs((long) ((int) a[i] - (int) a[j]));
+                if (ABS > temp) {
+                    ABS = temp;
+                    if (less(a[i], a[j])) {
+                        min = (int) a[i];
+                        max = (int) a[j];
+                    } else {
+                        max = (int) a[i];
+                        min = (int) a[j];
+
+                    }
+
+
+                } else if (ABS == temp) {
+                    if ((int) min + (int) max > ((int) a[i] + (int) a[j])) {
+                        if (less(a[i], a[j])) {
+                            min = (int) a[i];
+                            max = (int) a[j];
+                        } else {
+                            max = (int) a[i];
+                            min = (int) a[j];
+
+                        }
+
+                    }
+                }
+
+            }
+        }
+        System.out.println(ABS + " [" + min + " " + max + "]");
+    }
+    private static void sort(Comparable[] a, int lo, int hi) {
         if (hi <= lo) return;
         int j = partition(a, lo, hi);
-        sort(a, lo, j-1);
-        sort(a, j+1, hi);
+        sort(a, lo, j - 1);
+        sort(a, j + 1, hi);
     }
 
-    private static void sortDes(Comparable[] a, int lo, int hi)
-    {
+    private static void sortDes(Comparable[] a, int lo, int hi) {
         if (hi <= lo) return;
-        int j = partitionDescending(a, lo, hi);
-        sortDes(a, lo, j-1);
-        sortDes(a, j+1, hi);
+        int j = partitionDes(a, lo, hi);
+        sortDes(a, lo, j - 1);
+        sortDes(a, j + 1, hi);
     }
 
-    static void noSort(Comparable[] array) {
-        int ABS = Math.abs((int)array[1]-(int)array[0]);
-        int min,max;
-        if(less(array[0], array[1])) {
-            min = (int) array[0];
-            max = (int) array[1];
-        }
-        else {
-            max = (int) array[0];
-            min = (int) array[1];
 
-        }
+    static void findPairWise(Comparable[] a) {
 
-        for(int i = 0;i <array.length-1;i++) {
-            for(int j = i+1; j < array.length;j++) {
-                int temp =Math.abs((int)array[i]-(int)array[j]);
-                if(ABS >temp) {
-                    ABS = temp;
-                    if(less(array[i], array[j])) {
-                        min = (int) array[i];
-                        max = (int) array[j];
-                    }
-                    else {
-                        max = (int) array[i];
-                        min = (int) array[j];
+        int ABS = (int) a[1] - (int) a[0];
 
-                    }
+        int min = (int) a[0];
+        int max = (int) a[1];
 
+        for (int j = 0; j < a.length - 1; j++) {
 
-                }
-                else if(ABS ==temp) {
-                    if((int)min+(int)max >((int)array[i]+(int)array[j])){
-                        if(less(array[i], array[j])) {
-                            min = (int) array[i];
-                            max = (int) array[j];
-                        }
-                        else {
-                            max = (int) array[i];
-                            min = (int) array[j];
+            int temp = (int) a[j + 1] - (int) a[j];
 
-                        }
-
-                    }
-                }
-
-            }
-        }
-        System.out.println("ABS:"+ABS+", Min="+min+", Max="+max);
-    }
-    static void nosort2(Comparable[] array) {
-        long ABS = Math.abs((long)((int)array[1]-(int)array[0]));
-        int min,max;
-        if(less(array[0], array[1])) {
-            min = (int) array[0];
-            max = (int) array[1];
-        }
-        else {
-            max = (int) array[0];
-            min = (int) array[1];
-
-        }
-
-        for(int i = 0;i <array.length-1;i++) {
-            for(int j = i+1; j < array.length;j++) {
-                long temp =Math.abs((long)((int)array[i]-(int)array[j]));
-                if(ABS >temp) {
-                    ABS = temp;
-                    if(less(array[i], array[j])) {
-                        min = (int) array[i];
-                        max = (int) array[j];
-                    }
-                    else {
-                        max = (int) array[i];
-                        min = (int) array[j];
-
-                    }
-
-
-                }
-                else if(ABS ==temp) {
-                    if((int)min+(int)max >((int)array[i]+(int)array[j])){
-                        if(less(array[i], array[j])) {
-                            min = (int) array[i];
-                            max = (int) array[j];
-                        }
-                        else {
-                            max = (int) array[i];
-                            min = (int) array[j];
-
-                        }
-
-                    }
-                }
-
-            }
-        }
-        System.out.println(ABS+" ["+min+" "+max+"]");
-    }
-
-    static void random(Comparable[] array) {
-        long ABS = Math.abs((long)((int)array[1]-(int)array[0]));
-
-        int min,max;
-        if(less(array[0], array[1])) {
-            min = (int) array[0];
-            max = (int) array[1];
-        }
-        else {
-            max = (int) array[0];
-            min = (int) array[1];
-
-        }
-
-        for(int i = 0;i <array.length-1;i++) {
-            for(int j = i+1; j < array.length;j++) {
-                long temp =Math.abs((long)((int)array[i]-(int)array[j]));
-                if(ABS >temp) {
-                    ABS = temp;
-                    if(less(array[i], array[j])) {
-                        min = (int) array[i];
-                        max = (int) array[j];
-                    }
-                    else {
-                        max = (int) array[i];
-                        min = (int) array[j];
-
-                    }
-
-
-                }
-                else if(ABS ==temp) {
-                    if((int)min+(int)max >((int)array[i]+(int)array[j])){
-                        if(less(array[i], array[j])) {
-                            min = (int) array[i];
-                            max = (int) array[j];
-                        }
-                        else {
-                            max = (int) array[i];
-                            min = (int) array[j];
-
-                        }
-
-                    }
-                }
-
-            }
-        }
-        System.out.println(ABS+" ["+min+" "+max+"]");
-    }
-
-    static void findpairwise(Comparable[] array) {
-        int ABS = (int)array[1]-(int)array[0];
-        int min= (int)array[0];
-        int max =(int)array[1];
-        for(int j =0;j <array.length-1;j++) {
-            int temp =(int)array[j+1]-(int)array[j];
-            if(ABS >temp) {
+            if (ABS > temp) {
                 ABS = temp;
-                min = (int) array[j];
-                max = (int) array[j+1];
+                min = (int) a[j];
+                max = (int) a[j + 1];
 
 
             }
         }
-        System.out.println("ABS:"+ABS+", Min="+min+", Max="+max);
+        System.out.println("ABS:" + ABS + ", Min=" + min + ", Max=" + max);
 
     }
-    private static boolean less(Comparable v ,Comparable w) {
+
+    private static boolean less(Comparable v, Comparable w) {
         return v.compareTo(w) < 0;
     }
-    private static boolean more(Comparable v ,Comparable w) {
+
+    private static boolean more(Comparable v, Comparable w) {
         return v.compareTo(w) > 0;
     }
-    private static void exch(Comparable[] array,int i, int j) {
-        Comparable swap = array[i];
-        array[i] = array[j];
-        array[j] = swap;
+
+    private static void exch(Comparable[] a, int i, int j) {
+
+        Comparable swap = a[i];
+
+        a[i] = a[j];
+        a[j] = swap;
 
     }
 
     public static void main(String[] args) {
-        Scanner scn = new Scanner(System.in);
+
+        Scanner sc = new Scanner(System.in);
+
         System.out.println("Enter the sort you want to use:");
-        String sorting = scn.nextLine().toLowerCase();
+
+        String sorting = sc.nextLine();
+
         Comparable a[] = new Integer[10];
+
         System.out.println();
         System.out.println("Enter array:");
-        for(int i = 0 ; i <10;i++) {
-            a[i]=scn.nextInt();
-        }
-        switch(sorting) {
-            case "selection":
-                selection(a);
-                findpairwise(a);
-                break;
-            case "merge":
-                merge(a);
-                findpairwise(a);
-                break;
-            case "quick":
-                quick(a);
-                findpairwise(a);
-                break;
-            case "insertion":
-                insertion(a);
-                findpairwise(a);
-                break;
-            case "nosort":
-                noSort(a);
-                break;
-            default:
 
+        for (int i = 0; i < 10; i++) {
+
+            a[i] = sc.nextInt();
+        }
+
+        switch (sorting) {
+            case "selection" -> {
+                select(a);
+                findPairWise(a);
+            }
+            case "merge" -> {
+                merge(a);
+                findPairWise(a);
+            }
+            case "quick" -> {
+                quick(a);
+                findPairWise(a);
+            }
+            case "insertion" -> {
+                insertion(a);
+                findPairWise(a);
+            }
+            case "nosort" -> noSort(a);
+            default -> {
+            }
         }
 
 
     }
-
 
 
 }

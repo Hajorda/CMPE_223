@@ -9,6 +9,7 @@ import java.util.Scanner;
 // Section: 3
 // Assignment: 2
 // -----------------------------------------
+
 public class Main2 {
 
 

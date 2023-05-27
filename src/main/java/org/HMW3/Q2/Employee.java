@@ -1,7 +1,5 @@
 package org.HMW3.Q2;
 
-import java.util.*;
-
 class Employee {
     int id;
     String name;
@@ -17,42 +15,43 @@ class Employee {
 }
 
 class EmployeeDatabase {
-    private Employee root;
+    private static Employee root;
 
     public EmployeeDatabase() {
         root = null;
     }
 
-    public void insertEmployee(int id, String name, boolean gender) {
-        root = insertEmployeeRecursive(root, id, name, gender);
+    public static void insertEmployee(int id, String name, boolean gender) {
+        root = insertEmployeeR(root, new Employee(id, name, gender));
     }
 
-    private Employee insertEmployeeRecursive(Employee root, int id, String name, boolean gender) {
-        if (root == null) {
-            root = new Employee(id, name, gender);
-            return root;
+    private static Employee insertEmployeeR(Employee r, Employee t) {
+        if (r == null) {
+            r = new Employee(t.id, t.name, t.gender);
+            return r;
         }
 
-        if (id < root.id)
-            root.left = insertEmployeeRecursive(root.left, id, name, gender);
-        else if (id > root.id)
-            root.right = insertEmployeeRecursive(root.right, id, name, gender);
+        if (t.id < r.id)
+            r.left = insertEmployeeR(r.left, t);
+        else if (t.id > r.id)
+            r.right = insertEmployeeR(r.right, t);
 
-        return root;
+        return r;
     }
 
-    public void deleteEmployee(int id) {
-        root = deleteEmployeeRecursive(root, id);
+    public static void deleteEmployee(int id) {
+        root = deleteEmployeeR(root, id);
     }
 
-    private Employee deleteEmployeeRecursive(Employee root, int id) {
+    private static Employee deleteEmployeeR(Employee root, int id) {
+
         if (root == null)
             return root;
 
         if (id < root.id)
-            root.left = deleteEmployeeRecursive(root.left, id);
+            root.left = deleteEmployeeR(root.left, id);
         else if (id > root.id)
-            root.right = deleteEmployeeRecursive(root.right, id);
+            root.right = deleteEmployeeR(root.right, id);
         else {
             if (root.left == null)
                 return root.right;
@@ -60,67 +59,92 @@ class EmployeeDatabase {
                 return root.left;
 
             root.id = getMinimumID(root.right);
-            root.right = deleteEmployeeRecursive(root.right, root.id);
+            root.right = deleteEmployeeR(root.right, root.id);
+
         }
 
         return root;
     }
 
-    private int getMinimumID(Employee root) {
-        int minID = root.id;
-        while (root.left != null) {
-            minID = root.left.id;
-            root = root.left;
+    private static int getMinimumID(Employee r) {
+
+        int minID = r.id;
+
+        while (r.left != null) {
+
+            minID = r.left.id;
+            r = r.left;
         }
+
         return minID;
     }
 
-    public void searchEmployee(int id) {
-        searchEmployeeRecursive(root, id);
+    public static void searchEmployee(int id) {
+        searchEmployeeR(root, id);
     }
 
-    private void searchEmployeeRecursive(Employee root, int id) {
-        if (root == null) {
-            System.out.println("Record not found");
+    private static void searchEmployeeR(Employee r, int id) {
+
+        if (r == null) {
+            System.out.println("No record found.");
             return;
         }
 
-        if (id == root.id) {
-            System.out.println("ID: " + root.id + ", Name: " + root.name + ", Gender: " + (root.gender ? "Female" : "Male"));
-        } else if (id < root.id) {
-            searchEmployeeRecursive(root.left, id);
+        if (id == r.id) {
+            String g;
+            if (r.gender)
+                g = "Male";
+            else
+                g = "Female";
+            System.out.println("ID: " + r.id + ", Name: " + r.name + ", Gender: " + g);
+        } else if (id < r.id) {
+            searchEmployeeR(r.left, id);
         } else {
-            searchEmployeeRecursive(root.right, id);
+            searchEmployeeR(r.right, id);
         }
     }
 
-    public void listAllEmployees() {
-        listAllEmployeesRecursive(root);
+    public static void listAllEmployees() {
+        listAllEmployeesR(root);
     }
 
-    private void listAllEmployeesRecursive(Employee root) {
-        if (root != null) {
-            listAllEmployeesRecursive(root.left);
-            System.out.println("ID: " + root.id + ", Name: " + root.name + ", Gender: " + (root.gender ? "Female" : "Male"));
-            listAllEmployeesRecursive(root.right);
+    private static void listAllEmployeesR(Employee r) {
+
+        if (r != null) {
+            String g;
+            if (r.gender)
+                g = "Male";
+            else
+                g = "Female";
+            listAllEmployeesR(r.left);
+            System.out.println(r.id + " " + r.name + " " + g);
+            listAllEmployeesR(r.right);
         }
+
     }
 
-    public void listEmployeesInRange(int minID, int maxID) {
-        listEmployeesInRangeRecursive(root, minID, maxID);
+    public static void listEmployeesInRange(int minID, int maxID) {
+            int a = listEmployeesInRange(root, minID, maxID);
+        if(a == 0)
+            System.out.println("No record found.");
     }
 
-    private void listEmployeesInRangeRecursive(Employee root, int minID, int maxID) {
+    private static int listEmployeesInRange(Employee root, int minID, int maxID) {
+
         if (root != null) {
+
             if (root.id >= minID)
-                listEmployeesInRangeRecursive(root.left, minID, maxID);
+                listEmployeesInRange(root.left, minID, maxID);
 
             if (root.id >= minID && root.id <= maxID)
                 System.out.println("ID: " + root.id + ", Name: " + root.name + ", Gender: " + (root.gender ? "Female" : "Male"));
 
             if (root.id <= maxID)
-                listEmployeesInRangeRecursive(root.right, minID, maxID);
+                listEmployeesInRange(root.right, minID, maxID);
+
+            return 1;
         }
+        return 0;
     }
 }
 

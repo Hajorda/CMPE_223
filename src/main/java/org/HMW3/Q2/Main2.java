@@ -1,5 +1,7 @@
 package org.HMW3.Q2;
 
+
+
 import java.util.Scanner;
 
 public class Main2 {
@@ -15,30 +17,30 @@ public class Main2 {
             int input = sc.nextInt();
             switch (input) {
                 case 1:
-                    System.out.print("Enter information:");
+                    System.out.println("Enter information:");
                     int id = sc.nextInt();
                     String name = sc.next();
                     String gender = sc.next();
-                    EmployeeDatabase.insertEmployee(id, name, gender.equalsIgnoreCase("Male"));
+                    binarySearchTreeEmployee.insertEmployee(id, name, gender.equalsIgnoreCase("Male"));
                     break;
                 case 2:
-                    System.out.print("Enter ID to be deleted:");
+                    System.out.println("Enter ID to be deleted:");
                     int idToDelete = sc.nextInt();
-                    EmployeeDatabase.deleteEmployee(idToDelete);
+                    binarySearchTreeEmployee.deleteEmployee(idToDelete);
                     break;
                 case 3:
-                    System.out.print("Enter ID to search: ");
+                    System.out.println("Enter ID to be searched:");
                     int idToSearch = sc.nextInt();
-                    EmployeeDatabase.searchEmployee(idToSearch);
+                    binarySearchTreeEmployee.searchEmployee(idToSearch);
                     break;
                 case 4:
-                    EmployeeDatabase.listAllEmployees();
+                    binarySearchTreeEmployee.listAllEmployees();
                     break;
                 case 5:
-                    System.out.print("Enter bounds of range: ");
+                    System.out.println("Enter bounds of range: ");
                     int minID = sc.nextInt();
                     int maxID = sc.nextInt();
-                    EmployeeDatabase.listEmployeesInRange(minID, maxID);
+                    binarySearchTreeEmployee.listEmployeesInRange(minID, maxID);
                     break;
                 case 6:
                     System.out.println("Stopped!");

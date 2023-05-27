@@ -14,10 +14,10 @@ class Employee {
     }
 }
 
-class EmployeeDatabase {
+class binarySearchTreeEmployee {
     private static Employee root;
 
-    public EmployeeDatabase() {
+    public binarySearchTreeEmployee() {
         root = null;
     }
 
@@ -43,27 +43,27 @@ class EmployeeDatabase {
         root = deleteEmployeeR(root, id);
     }
 
-    private static Employee deleteEmployeeR(Employee root, int id) {
+    private static Employee deleteEmployeeR(Employee r, int id) {
 
-        if (root == null)
-            return root;
+        if (r == null)
+            return r;
 
-        if (id < root.id)
-            root.left = deleteEmployeeR(root.left, id);
-        else if (id > root.id)
-            root.right = deleteEmployeeR(root.right, id);
+        if (id < r.id)
+            r.left = deleteEmployeeR(r.left, id);
+        else if (id > r.id)
+            r.right = deleteEmployeeR(r.right, id);
         else {
-            if (root.left == null)
-                return root.right;
-            else if (root.right == null)
-                return root.left;
+            if (r.left == null)
+                return r.right;
+            else if (r.right == null)
+                return r.left;
 
-            root.id = getMinimumID(root.right);
-            root.right = deleteEmployeeR(root.right, root.id);
+            r.id = getMinimumID(r.right);
+            r.right = deleteEmployeeR(r.right, r.id);
 
         }
 
-        return root;
+        return r;
     }
 
     private static int getMinimumID(Employee r) {

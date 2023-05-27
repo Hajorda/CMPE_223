@@ -13,14 +13,13 @@ public class Main2 {
             System.out.println("Enter operation code:");
 
             int input = sc.nextInt();
-
             switch (input) {
                 case 1:
                     System.out.print("Enter information:");
                     int id = sc.nextInt();
                     String name = sc.next();
-                    boolean gender = sc.nextInt() == 1;
-                    EmployeeDatabase.insertEmployee(id, name, gender);
+                    String gender = sc.next();
+                    EmployeeDatabase.insertEmployee(id, name, gender.equalsIgnoreCase("Male"));
                     break;
                 case 2:
                     System.out.print("Enter ID to be deleted:");

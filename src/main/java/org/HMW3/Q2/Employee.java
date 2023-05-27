@@ -124,28 +124,36 @@ class EmployeeDatabase {
     }
 
     public static void listEmployeesInRange(int minID, int maxID) {
-            int a = listEmployeesInRange(root, minID, maxID);
-        if(a == 0)
+        boolean e = false; // track's if employees were found
+
+        e = listEmployeesInRange(root, minID, maxID, e);
+
+        if (!e) {
             System.out.println("No record found.");
-    }
-
-    private static int listEmployeesInRange(Employee root, int minID, int maxID) {
-
-        if (root != null) {
-
-            if (root.id >= minID)
-                listEmployeesInRange(root.left, minID, maxID);
-
-            if (root.id >= minID && root.id <= maxID)
-                System.out.println("ID: " + root.id + ", Name: " + root.name + ", Gender: " + (root.gender ? "Female" : "Male"));
-
-            if (root.id <= maxID)
-                listEmployeesInRange(root.right, minID, maxID);
-
-            return 1;
         }
-        return 0;
+
     }
+
+    private static boolean listEmployeesInRange(Employee r, int minID, int maxID, boolean e) {
+        if (r != null) {
+            if (r.id >= minID) {
+                e = listEmployeesInRange(r.left, minID, maxID, e);
+            }
+
+            if (r.id >= minID && r.id <= maxID) {
+                String g = r.gender ? "Male" : "Female";
+                System.out.println(r.id + " " + r.name + " " + g);
+                e = true; // Set the boolean to true if an employee is found
+            }
+
+            if (r.id <= maxID) {
+                e = listEmployeesInRange(r.right, minID, maxID, e);
+            }
+        }
+
+        return e;
+    }
+
 }
 
 

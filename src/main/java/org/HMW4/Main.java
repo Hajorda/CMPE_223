@@ -71,7 +71,7 @@ public class Main {
         public int compareTo(@NotNull Main.Customer o) {
             if (rDate == o.rDate) {
                 //1200 IQ
-                return Integer.compare(rYear, o.rYear);
+                return Integer.compare(o.rYear, rYear);
             }
             return Integer.compare(rDate, o.rDate);
         }
@@ -146,10 +146,12 @@ public class Main {
         for (int day = 1; day < 31; day++) {
 
             for (int i = 0; i < bGiven.size(); i++) {
-                if (bGiven.get(i).temp == day) {
+                System.out.println(bGiven.get(i).book+bGiven.get(i).name+" bakılıyor ee"+bGiven.size()+",,,"+i);
+                if (bGiven.get(i).temp <= day) {
                     System.out.println(bGiven.get(i).book+bGiven.get(i).name+"verrrr");
                     bookSearch(bGiven.get(i).book).count++;
                     bGiven.remove(i);
+                    i = i-1;
                 }
             }
 
@@ -166,7 +168,7 @@ public class Main {
                     if (t.rDate == day && books.get(i).count > 0) {
                         System.out.println(t.name + "verdim"+t.rDate);
                         books.get(i).count--;
-                        t.temp = t.rDate + t.rDay+1;
+                        t.temp = t.rDate + t.rDay +1;
                         bGiven.add(t);
                     } else if (t.rDate <= day && books.get(i).count > 0) {
                         System.out.println("BOK");

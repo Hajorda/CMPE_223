@@ -59,7 +59,7 @@ public class Main {
         int rDay;
         int temp = -1;
         String book;
-
+        int sira;
         public Customer(int rYear, String name, int rDate, int rDay) {
             this.rYear = rYear;
             this.name = name;
@@ -71,6 +71,11 @@ public class Main {
         public int compareTo(@NotNull Main.Customer o) {
             if (rDate == o.rDate) {
                 //1200 IQ
+                if (o.rYear == rYear){
+                    System.out.println("oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+                    return Integer.compare(o.sira, sira);
+                }
+
                 return Integer.compare(o.rYear, rYear);
             }
             return Integer.compare(rDate, o.rDate);
@@ -103,6 +108,7 @@ public class Main {
         MaxPQ tc = new MaxPQ<>();
 
         int current = 0;
+        int bub = 0;
         while (sc.hasNextLine()) {
 
             String s = sc.nextLine();
@@ -134,11 +140,12 @@ public class Main {
                 String[] l = s.split(",");
                 Customer c = new Customer(Integer.parseInt(l[0]), l[1], Integer.parseInt(l[2]), Integer.parseInt(l[3]));
                 c.book = l[4];
+                c.sira = bub;
                 System.out.println("Ara" + l[4]);
                 bookSearch(l[4]).tree.insert(c);
                 System.out.println(l[1]);
             }
-
+            bub++;
 
         }
 
@@ -156,11 +163,12 @@ public class Main {
             }
 
             ArrayList<Customer> waiting = new ArrayList<>();
-
+            ArrayList<String> bookinfo = new ArrayList<>();
             for (int i = 0; i < books.size(); i++) {
 
 
                 MaxPQ tt = new MaxPQ();
+                bookinfo.add(books.get(i).author + "," + books.get(i).name + "," + books.get(i).count);
 
                 while (!books.get(i).tree.isEmpty()){
                     Customer t = books.get(i).tree.max();
@@ -173,7 +181,7 @@ public class Main {
                     } else if (t.rDate <= day && books.get(i).count > 0) {
                         System.out.println("BOK");
                         books.get(i).count--;
-                        t.temp = day + t.rDay;
+                        t.temp = day + t.rDay+1;
                         bGiven.add(t);
                         waiting.remove(t);
                     } else if (t.rDate <= day && books.get(i).count <= 0) {
@@ -239,8 +247,8 @@ public class Main {
                     System.out.println(cus.name + " waits " + cus.book + " since day " + cus.rDate);
                 }
                 System.out.println("Book info:");
-                for (Book book : books) {
-                    System.out.println(book.author + "," + book.name + "," + book.count);
+                for (String b : bookinfo) {
+                    System.out.println(b);
                 }
             } else
                 System.out.println(day + " Boş gündü\n--------------------------------");

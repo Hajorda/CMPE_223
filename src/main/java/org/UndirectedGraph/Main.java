@@ -3,6 +3,7 @@ package org.UndirectedGraph;
 
 import java.util.Scanner;
 
+//Main class for question 1
 public class Main {
 
     public static void main(String[] args) {

@@ -1,19 +1,45 @@
 package org.UndirectedGraph;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 // Main class for question 2
 public class Main2 {
 
-    static int minCost = Integer.MAX_VALUE;
-    static int[] minPath;
+
+
+   static int[][] cost;
+
+    public static int getCost(Comparable a , Comparable b) {
+        return cost[(int)a][(int)b];
+    }
+
+    // Utility method to convert a queue to a space-separated string
+    public static String pathToString(Queue path) {
+        StringBuilder pathString = new StringBuilder();
+
+        while (!path.isEmpty()) {
+            pathString.append((int)path.dequeue()+1).append(" ");
+        }
+
+        // Remove the trailing space
+        if (pathString.length() > 0) {
+            pathString.deleteCharAt(pathString.length() - 1);
+        }
+
+        String ass = pathString.toString();
+        String ass2 = "";
+        for(int i=ass.length() ; i >= 0 ; i--)
+            ass2 += ass.charAt(i);
+        return ass2;
+    }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n, m;
         m = sc.nextInt(); // Number of museums
         n = sc.nextInt(); // Number of roads between museums
-        int[][] cost = new int[m][m];
+        cost = new int[m][m];
         Graph graph = new Graph(m);
 
         for (int i = 0; i < n; i++) {
@@ -23,53 +49,38 @@ public class Main2 {
             c = sc.nextInt();
 
             graph.addEdge(a - 1, b - 1);
-            System.out.println((a-1) + " " + (b-1)  + " " + c);
+
             cost[a - 1][b - 1] = cost[b - 1][a - 1] = c;
         }
         System.out.println("Loop bitti");
 
-        boolean[] visited = new boolean[m];
-        int[] path = new int[m];
-        minPath = new int[m];
+        int mincost = 100;
+         Queue path = new Queue();
 
-        // Start the TSP from museum 0
-        path[0] = 0;
-        visited[0] = true;
-        tsp(graph, cost, visited, path, 1, 0, m);
 
-        if (minCost == Integer.MAX_VALUE) {
-            System.out.println("-1"); // No way to visit all museums
-        } else {
-            System.out.println("Minimum Cost: " + minCost); // Print the minimum cost
+        for (int i = 0; i < m; i++) {
 
-            System.out.print("Minimum Cost Path: ");
-            for (int i = 0; i < m; i++) {
-                System.out.print(minPath[i] + " ");
-            }
-            System.out.println(minPath[0]); // Print the path
-        }
-    }
+            DepthFirstPaths dfs = new DepthFirstPaths();
+            Queue temp = dfs.DepthFirstSearch(graph, i);
 
-    // Recursive function to find the minimum cost Hamiltonian Cycle
-    static void tsp(Graph graph, int[][] cost, boolean[] visited, int[] path, int pos, int costSoFar, int m) {
-        if (pos == m) {
-            // If all museums have been visited
-            if (graph.adj(path[pos - 1]).iterator().hasNext() && graph.adj(path[pos - 1]).iterator().next() == 0) {
-                if (costSoFar + cost[path[pos - 1]][0] < minCost) {
-                    minCost = costSoFar + cost[path[pos - 1]][0];
-                    System.arraycopy(path, 0, minPath, 0, m); // Update minimum path
-                }
-            }
-            return;
-        }
-
-        for (int v = 1; v < m; v++) {
-            if (!visited[v] && graph.adj(path[pos - 1]).iterator().hasNext() && graph.adj(path[pos - 1]).iterator().next() == v) {
-                visited[v] = true;
-                path[pos] = v;
-                tsp(graph, cost, visited, path, pos + 1, costSoFar + cost[path[pos - 1]][v], m);
-                visited[v] = false;
+            if (dfs.getCostPath() < mincost) {
+                mincost = dfs.getCostPath();
+                path = temp;
             }
         }
+        System.out.println(mincost);
+        System.out.println(pathToString(path));
+
+
+
+        /*DepthFirstPaths dfs = new DepthFirstPaths();
+        Queue temp = dfs.DepthFirstSearch(graph, 3);
+        System.out.println("Minimum Cost: " + dfs.getCostPath());
+        System.out.println("Minimum Cost Path: ");
+        temp.printQueue();*/
+
+
+
+
     }
 }

@@ -41,7 +41,7 @@ public class BreadthFirstPaths
         distTo[s] = 0;
 
         while (!q.isEmpty()) {
-            int v = q.dequeue();
+            int v = (int) q.dequeue();
             for (int w : G.adj(v)) {
                 if (!marked[w]) {
                     q.enqueue(w);
